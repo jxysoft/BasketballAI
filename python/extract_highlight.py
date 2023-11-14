@@ -71,7 +71,7 @@ def handleShoot(ballConfig, current_frame_id, result, shoot_boxes, reid_model, f
         if player_founded:
             # first find player by track_id if exsist in player_res
             track_id = int(player_box.id.item())
-            player = findPersonByTrackId(track_id)
+            player = None # findPersonByTrackId(track_id), tracker id may change
             if player is None:
                 # then find the player by body and face, or add to player res if is empyt
                 # todo: face
@@ -339,7 +339,7 @@ def parse_opt():
     parser.add_argument('--classes', nargs='+', type=int, default=[0,1,2,3,4], help='filter by class: --classes 0, or --classes 0 2 3')
     parser.add_argument('--half', action='store_true', help='use FP16 half-precision inference')
     parser.add_argument('--filterByBody', action='store_false', default=True, help='filter made case by person body')
-    parser.add_argument('--filterByFace', action='store_false', default=False, help='filter made case by person face')
+    parser.add_argument('--filterByFace', action='store_false', default=True, help='filter made case by person face')
     opt = parser.parse_args()
     return opt
 

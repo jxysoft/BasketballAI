@@ -48,6 +48,7 @@ def find_shooter(result, shoot_box, confidence=0.5):
     clsId = int(box.cls)
     if clsId == TrackCls.person.value and box.conf > confidence:
         # check person box is inside shoot box
+        # todo: mayby multiple person inside shoot box
         if (box_inside(box, shoot_box)):
           return True, box
   return False, None
