@@ -1,6 +1,6 @@
 import numpy as np
 
-from python.conf.config import TrackCls
+from conf.config import TrackCls
 
 def made_found(result, confidence=0.6):
   find = False
