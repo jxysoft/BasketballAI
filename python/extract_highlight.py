@@ -1,5 +1,4 @@
 import argparse
-from functools import partial
 from pathlib import Path
 import time
 import queue
@@ -322,15 +321,13 @@ def run(args):
 def parse_opt():
     
     parser = argparse.ArgumentParser()
-    parser.add_argument('--detect_model', type=Path,
-                        default='/Users/jxy/Projects/person/BasketballAI/models/yolov8x_best.pt',
-                        help='defect model path')
-    parser.add_argument('--reid_model', type=Path, default='/Users/jxy/Projects/person/BasketballAI/models/clip_market1501.pt', help='reid model path')
+    parser.add_argument('--detect_model', type=Path, default='./models/yolov8x_best.pt',help='defect model path')
+    parser.add_argument('--reid_model', type=Path, default='./models/clip_market1501.pt', help='reid model path')
     parser.add_argument('--tracking_method', type=str, default='botsort', help='botsort, bytetrack')
-    parser.add_argument('--tracking_config', type=Path, default='/Users/jxy/Projects/person/BasketballAI/python/boxmot/configs/botsort.yaml', help='tracking config path')
-    parser.add_argument('--input_person', type=Path, default = "/Users/jxy/Projects/person/BasketballAI/input/", help='input person path')
-    parser.add_argument('--input', type=Path, default = "/Users/jxy/Projects/person/BasketballAI/input/test/videos", help='input path')
-    parser.add_argument('--output', type=Path, default = "/Users/jxy/Projects/person/BasketballAI/output/highlights", help='output path')  
+    parser.add_argument('--tracking_config', type=Path, default='./python/boxmot/configs/botsort.yaml', help='tracking config path')
+    parser.add_argument('--input_person', type=Path, default = "./input/", help='input person path')
+    parser.add_argument('--input', type=Path, default = "./input/test/videos", help='input path')
+    parser.add_argument('--output', type=Path, default = "./output/highlights", help='output path')  
     parser.add_argument('--vid_stride', type=int, default=1, help='video frame-rate stride')
     parser.add_argument('--start_frame_id', type=int, default=540, help='video start frame id')
     # 560,750,3000,3220,3900,4200
@@ -341,7 +338,7 @@ def parse_opt():
     parser.add_argument('--iou', type=float, default=0.7, help='intersection over union (IoU) threshold for NMS')
     parser.add_argument('--classes', nargs='+', type=int, default=[0,1,2,3,4], help='filter by class: --classes 0, or --classes 0 2 3')
     parser.add_argument('--half', action='store_true', help='use FP16 half-precision inference')
-    parser.add_argument('--filterByBody', action='store_false', default=False, help='filter made case by person body')
+    parser.add_argument('--filterByBody', action='store_false', default=True, help='filter made case by person body')
     parser.add_argument('--filterByFace', action='store_false', default=False, help='filter made case by person face')
     opt = parser.parse_args()
     return opt
