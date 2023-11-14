@@ -255,7 +255,7 @@ def isValidFrame(args, current_frame_id):
     if current_frame_id < args.start_frame_id:
         return False 
     # handle frame range
-    if len(args.frame_ranges) > 0:
+    if len(args.frame_ranges) > 1:
         for idx in range(0, len(args.frame_ranges), 2):
             if current_frame_id >= args.frame_ranges[idx] and current_frame_id <= args.frame_ranges[idx + 1]:
                 return True
@@ -329,9 +329,9 @@ def parse_opt():
     parser.add_argument('--input', type=Path, default = "./input/test/videos", help='input path')
     parser.add_argument('--output', type=Path, default = "./output/highlights", help='output path')  
     parser.add_argument('--vid_stride', type=int, default=1, help='video frame-rate stride')
-    parser.add_argument('--start_frame_id', type=int, default=540, help='video start frame id')
+    parser.add_argument('--start_frame_id', type=int, default=-1, help='video start frame id') 
     # 560,750,3000,3220,3900,4200
-    parser.add_argument('--frame_ranges', nargs='+', type=int, default=[560,750,3000,3220,3900,4200], help='video include frame range, must be pair')
+    parser.add_argument('--frame_ranges', nargs='+', type=int, default=[], help='video include frame range, must be pair')
     parser.add_argument('--device', default='', help='cuda device, i.e. 0 or 0,1,2,3 or cpu or mps')
     
     parser.add_argument('--conf', type=float, default=0.5, help='confidence threshold')
