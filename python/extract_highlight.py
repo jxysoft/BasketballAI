@@ -85,11 +85,11 @@ def handleShoot(ballConfig, current_frame_id, result, shoot_boxes, reid_model, f
                     emb_dists, thresh=0.2
                 ) 
                 if len(matches) > 0: # find the player
-                    print(f"matches={matches}, emb_dists={emb_dists}")
+                    # print(f"matches={matches}, emb_dists={emb_dists}")
                     player = BallResult.person_res[matches[0][0]]
                     player.track_id = int(player_box.id.item())
                 elif BallEvent.findPlayerByBody == False:
-                    print("auto add player id=" + str(track_id))
+                    #print("auto add player id=" + str(track_id))
                     # auto add to player res
                     id = BallEvent.getPersonId()
                     player = Player(id = id, track_id= track_id, name = str(id), bodyFeat=detections)
