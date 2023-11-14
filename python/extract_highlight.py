@@ -169,7 +169,7 @@ def getVideos(args):
     input_videos = str(args.input)
     videos = sv.list_files_with_extensions(
         directory= input_videos,
-        extensions=["mp4", "avi", "mov"])
+        extensions=["mp4", "MP4", "avi", "mov"])
     videos.sort(reverse=True)
     print(f"input={input_videos}, videos len={len(videos)}, videos={videos}")
     return videos
