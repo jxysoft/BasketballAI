@@ -13,3 +13,4 @@ models/clip_market1501.pt
 python/**/__pycache__/**/**
 python/demo_track.py
 python/demo.ipynb
+models/yolov8x_best.pt
