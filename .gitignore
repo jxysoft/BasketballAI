@@ -1,0 +1,15 @@
+.vscode/**/**
+datasets/**/**
+study/**/**
+jupyter/**/**
+input/test/**
+input/face/**
+output/**/**
+hf.txt
+kaggle.json
+models/yolov8n_best.pt
+models/clip_market1501.pt
+.env
+python/**/__pycache__/**/**
+python/demo_track.py
+python/demo.ipynb
