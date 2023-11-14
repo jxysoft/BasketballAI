@@ -14,7 +14,7 @@ def run(args):
     yolo = YOLO(args.detect_model)
     
     # handle images
-    input_images = str(args.input) + "/images"
+    input_images = str(args.input)
     images = sv.list_files_with_extensions(
         directory= input_images,
         extensions=["png", "jpg", "jpg"])
@@ -25,7 +25,7 @@ def run(args):
         # widht, height
         image_size = get_size(img) 
         # only track person
-        results = yolo.track(source = [img], imgsz = (image_size[1], image_size[0]), show = True, save = True, classes = [2])
+        results = yolo.track(source = [img], imgsz = (image_size[1], image_size[0]), classes = [2])
         boxes = results[0].boxes
         for i, box in enumerate(boxes):
             print(f'body及概率:i={i} , box={box}')
@@ -41,11 +41,9 @@ def run(args):
     
 def parse_opt():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--detect_model', type=Path,
-                        default='/Users/jxy/Projects/person/BasketballAI/models/yolov8x_best.pt',
-                        help='defect model path')
-    parser.add_argument('--input', type=Path, default = "/Users/jxy/Projects/person/BasketballAI/input/test", help='input image path')
-    parser.add_argument('--output', type=Path, default = "/Users/jxy/Projects/person/BasketballAI/output/body", help='output image path')  
+    parser.add_argument('--detect_model', type=Path, default='./models/yolov8x_best.pt', help='defect model path')
+    parser.add_argument('--input', type=Path, default = "./input/images", help='input image path')
+    parser.add_argument('--output', type=Path, default = "./output/body", help='output image path')  
 
     opt = parser.parse_args()
     return opt
